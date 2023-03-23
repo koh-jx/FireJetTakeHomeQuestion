@@ -33,7 +33,7 @@ const getStringLiterals = (node : babelTypes.TemplateLiteral) : string => {
     // return generate(node).code;
 
     // If no expressions, return quasis[0].value.cooked if it is not undefined
-    if (node.expressions.length === 0) return generate(node).code;
+    if (node.expressions.length === 0) return node.quasis[0].value.cooked ?? "";
 
     type ArrElem = { start: number, res: string };
     const tempArr : ArrElem[] = [];

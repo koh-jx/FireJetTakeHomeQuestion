@@ -10,12 +10,12 @@ const parseString = (codeString : string) : babelTypes.File => {
     });
 }
 
-export const getString = () : string => {
+export const getString = (filepath: string) : string => {
     // Read source.txt
-    const code : string = fs.readFileSync("./source1.txt", "utf8");
+    const code : string = fs.readFileSync(filepath, "utf8");
     return code;
 }
 
-export const getAST = () : babelTypes.File => {
-    return parseString(getString());
+export const getAST = (filepath: string) : babelTypes.File => {
+    return parseString(getString(filepath));
 }
