@@ -29,7 +29,7 @@ const checkLeadingSubstring = (node : babelTypes.TemplateLiteral) : boolean => {
 }
 
 const getStringLiterals = (node : babelTypes.TemplateLiteral) : string => {
-    //// generate the code, check if there is a leading /*tsx*/ comment, then return the leading substring
+    //// Another way is to generate the code, check if there is a leading /*tsx*/ comment, then return the leading substring
     // return generate(node).code;
 
     // If no expressions, return quasis[0].value.cooked if it is not undefined
@@ -38,29 +38,19 @@ const getStringLiterals = (node : babelTypes.TemplateLiteral) : string => {
     type ArrElem = { start: number, res: string };
     const tempArr : ArrElem[] = [];
     for (const expr of node.expressions) {
-        if (expr.start === undefined || expr.start === null) {
-            continue;
-        }
-
+        if (expr.start === undefined || expr.start === null) continue;
         tempArr.push({
-            start: expr.start,
+            start: expr.start as number,
             res: generate(expr).code
         });
     }
 
     for (const quasi of node.quasis) {
-        if (quasi.start === undefined || quasi.start === null) {
-            continue;
-        }
-
+        if (quasi.start === undefined || quasi.start === null) continue;
         tempArr.push({
-            start: quasi.start,
+            start: quasi.start as number,
             res: quasi.value.raw ?? ""
         });
-    }
-
-    for (const comment of node.leadingComments) {
-        
     }
 
     return tempArr
@@ -103,11 +93,3 @@ File
         ]
     ]
 */
-
-        //         // if (babelTypes.isTemplateElement(curr)) {
-        //         //     return acc + curr.value.cooked;
-        //         // } else if (babelTypes.isExpression(curr)) {
-        //         //     return generate(curr).code
-        //         // }
-        //         // return "";
-        //    }, "");
