@@ -1,6 +1,6 @@
 import { getString, getAST } from './FileParser';
-import { traverseAST } from './ASTVisitor';
+import { traverseAST } from './ASTUtil';
 
 // console.log(getString());
 // console.log(getAST());
-traverseAST(getAST());
+console.log(traverseAST(getAST()));
