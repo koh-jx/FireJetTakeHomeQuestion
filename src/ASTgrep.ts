@@ -1,11 +1,6 @@
 import traverse from "@babel/traverse";
 import generate from "@babel/generator";
 import * as babelTypes from '@babel/types';
-import * as prettier from "prettier";
-
-async function lint(code: string) {
-  return prettier.format(code);
-}
 
 // find all strings with the prefix comme   nt /*tsx*/ and return them
 export const traverseAST = (ast : babelTypes.File) : string[] => {
@@ -59,6 +54,8 @@ const getStringLiterals = (node : babelTypes.TemplateLiteral) : string => {
             .map((curr : ArrElem ) : string => curr.res)
             .reduce((acc: string, curr: string) => acc + curr, "");
 }
+
+export default traverseAST;
 
 /*
 File 

@@ -1,3 +1,3 @@
 import * as prettier from "prettier";
-
-export const lint = async (code: string) => prettier.format(code);
+const lint = async (code: string) => prettier.format(code);
+export default lint;
